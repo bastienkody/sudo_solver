@@ -54,4 +54,5 @@ int	solver(int x, int y, char last_try, char **grid)
 		ft_fprintf(1, "return solver next digit (current one was not 0)\n");
 		return (solver(x, y, '0', grid));
 	}
+	return (0);
 }
