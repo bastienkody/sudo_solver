@@ -26,29 +26,21 @@ int	solver(int x, int y, char last_try, char **grid)
 	print_grid(grid);
 	ft_fprintf(1, "---------------------------------\n");
 	if (grid_is_fulfilled(grid)) // solved ! 
-		return (0);
+		exit(EXIT_SUCCESS);
 	if (grid[y][x] == '0') // current digit is 0 --> find solution
 	{
 		while (last_try < '9')
 		{
 			grid[y][x] = ++last_try;
-			if (!verifier(y, x, grid)) // si digit is ok, go recursivly to the next 
+			if (!verifier(y, x, grid)) // si last try is ok, go recursivly to the next 
 			{
-				if (x < 8)
-					x++;
-				else if (y < 8)
-				{
-					x = 0;
-					y++;
-				}
 				ft_fprintf(1, "solver(next digit)\n");
 				solver(x, y, '0', grid);
 			}
+			//else
 		}
 		grid[y][x] = '0';
 		return (1);
-		ft_fprintf(1, "return solver x, y '0'\n");
-		solver(x, y, '0', grid);
 	}
 	else 
 	{
@@ -59,8 +51,7 @@ int	solver(int x, int y, char last_try, char **grid)
 			x = 0;
 			y++;
 		}
-		ft_fprintf(1, "return solver x+1 ou y+1\n");
+		ft_fprintf(1, "return solver next digit (current one was not 0)\n");
 		return (solver(x, y, '0', grid));
 	}
-	return (1);
 }
