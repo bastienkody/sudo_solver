@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bguillau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/24 13:56:47 by bguillau          #+#    #+#             */
+/*   Updated: 2023/02/24 13:56:50 by bguillau         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/sudo_solver.h"
 
 void	check_line(char *line, int line_nb, int *valid_bool)
@@ -11,7 +23,7 @@ void	check_line(char *line, int line_nb, int *valid_bool)
 	{
 		if (!ft_isdigit(*line))
 		{
-			ft_fprintf(2, "The char %c on line %i is not a digit\n", *line, line_nb + 1);
+			ft_fprintf(2, "\"%c\" line %i not a digit\n", *line, line_nb + 1);
 			*valid_bool = 0;
 		}
 		line++;
@@ -33,7 +45,7 @@ char	**check_size_n_get_grid(char *content)
 	if (i != 9)
 	{
 		ft_fprintf(2, "The number of row (%i) is not 9\n", i);
-		valid_bool = 0;	
+		valid_bool = 0;
 	}
 	if (valid_bool)
 		return (grid);
@@ -52,11 +64,11 @@ char	**err_on_fd(void)
 
 char	**parser(char *path)
 {
-    int		fd;
+	int		fd;
 	char	*tmp;
 	char	*content;
 
-    fd = open(path, O_RDONLY);
+	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (err_on_fd());
 	content = ft_strdup("");
@@ -64,7 +76,7 @@ char	**parser(char *path)
 	{
 		tmp = get_next_line(fd);
 		if (!tmp)
-			break;
+			break ;
 		content = strj(content, tmp);
 		if (!content)
 		{
@@ -72,6 +84,6 @@ char	**parser(char *path)
 			return (NULL);
 		}
 	}
-    close(fd);
+	close(fd);
 	return (check_size_n_get_grid(content));
 }

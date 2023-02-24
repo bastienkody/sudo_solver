@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   verifier.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bguillau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/24 13:57:07 by bguillau          #+#    #+#             */
+/*   Updated: 2023/02/24 13:57:11 by bguillau         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/sudo_solver.h"
 
 int	check_row(int y, char **grid)
@@ -94,10 +106,6 @@ int	check_sqr(int y, int x, char **grid)
 int	verifier(int y, int x, char **grid)
 {
 	if (check_row(y, grid) || check_col(x, grid) || check_sqr(y, x, grid))
-	{
-		ft_fprintf(1, "\033[31mVerifier (x:%i, y:%i, try:%c) is not ok\n\033[0m", x, y, grid[y][x]);
 		return (1);
-	}
-	ft_fprintf(1, "\033[32mVerifier (x:%i, y:%i, try:%c) is OK\n\033[0m", x, y, grid[y][x]);
 	return (0);
 }
