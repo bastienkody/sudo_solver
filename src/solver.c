@@ -52,7 +52,7 @@ int	solver(int x, int y, char last_try, char **grid)
 		{
 			grid[y][x] = ++last_try;
 			if (!verifier(y, x, grid))
-				solver(x, y, '0', grid);
+				next_digit(x, y, grid);
 			if (grid_is_fulfilled(grid))
 				return (0);
 		}
