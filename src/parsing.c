@@ -16,14 +16,18 @@ void	check_line(char *line, int line_nb, int *valid_bool)
 {
 	if (ft_strlen(line) != 9)
 	{
-		ft_fprintf(2, "Row %i is not well sized (9 digits per row)\n", line_nb);
+		ft_fprintf(1, "%s", RED);
+		ft_fprintf(2, "Row %i is not well sized (9 digits per row)\n", line_nb + 1);
+		ft_fprintf(1, "%s", END);
 		*valid_bool = 0;
 	}
 	while (*line)
 	{
 		if (!ft_isdigit(*line))
 		{
+			ft_fprintf(1, "%s", RED);
 			ft_fprintf(2, "\"%c\" line %i not a digit\n", *line, line_nb + 1);
+			ft_fprintf(1, "%s", END);
 			*valid_bool = 0;
 		}
 		line++;
@@ -44,7 +48,7 @@ char	**check_size_n_get_grid(char *content)
 		check_line(grid[i], i, &valid_bool);
 	if (i != 9)
 	{
-		ft_fprintf(2, "The number of row (%i) is not 9\n", i);
+		ft_fprintf(2, "%sThe number of row (%i) is not 9\n%s", RED, i, END);
 		valid_bool = 0;
 	}
 	if (valid_bool)
